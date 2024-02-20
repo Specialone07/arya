@@ -1,21 +1,18 @@
 import React from "react";
-import footer from "./footer.PNG";
+import tally from "./tally.png";
 import { FaLinkedinIn, FaTwitter, FaFacebookF } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
-    <div className="bg-slate-200 py-10">
+    <div className="bg-slate-200 py-10 mt-4">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid gap-8 sm:grid-cols-2 lg:grid-cols-4 text-slate-700">
         {/* Logo and About */}
         <div className="flex flex-col gap-4">
           <div>
-            <img className="h-50 w-auto" src={footer} alt="Footer" />
+            <img className="h-40 w-auto" src={tally} alt="Footer" />
           </div>
-          <p className="leading-8 text-lg">
-            Lorem ipsum dolor sit amet consectetur. Elit sem tempor egestas
-            molestie.
-          </p>
+          <p className="leading-8 text-lg"></p>
         </div>
         {/* Quick Links */}
         <div className="flex flex-col gap-4">

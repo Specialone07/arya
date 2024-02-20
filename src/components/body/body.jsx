@@ -1,56 +1,50 @@
 import React from "react";
-import bg from "./bg.png";
-import { FaArrowRight } from "react-icons/fa";
-import Button from "../button/button";
-import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-
+import { motion } from "framer-motion";
+import bg from "./bg.png";
+import sp from "./sp.jpg";
 const Body = () => {
   return (
-    <div className="min-h-[70vh] 800px:min-h-[80vh] bg-[#4172815b] flex flex-col justify-center items-center relative overflow-hidden">
-      {/* Background image with rotation */}
-      <Link to="/"></Link>
-      <motion.div
-        className="absolute z-10 h-[400px] w-[400px] bg-cover bg-center ml-[40%] rounded-md"
-        style={{
-          backgroundImage: `url(${bg})`,
-          rotate: 45, // Rotate the image to create a diamond shape
-          originX: "50%", // Set the rotation origin to the center horizontally
-          originY: "50%", // Set the rotation origin to the center vertically
-          boxShadow: "0px 0px 20px rgba(0, 0, 0, 0.3)", // Add a shadow effect
-        }}
-        whileHover={{ scale: 1.05 }} // Scale up the image on hover
-        transition={{ duration: 0.3 }} // Set the transition duration
-      ></motion.div>
-
-      {/* Content with motion */}
-      <motion.div
-        className="max-w-4xl text-center px-4 relative z-20 mr-[40%] bottom-8 -translate-x-16"
-        initial={{ opacity: 0, y: -50 }} // Initial animation settings
-        animate={{ opacity: 1, y: 0 }} // Animation settings when component is mounted
-        transition={{ duration: 1 }} // Animation duration
+    <div className="relative">
+      {/* Background Image */}
+      <div
+        className="bg-slate-400 flex items-center justify-center min-h-[70vh] sm:min-h-[80vh]"
+        style={{ backgroundImage: `url(${bg})`, backgroundSize: "cover" }}
       >
-        <h1 className="text-black text-6xl font-bold">
-          The <span className="text-[#be123c]">Aarya </span>
-          Tech.
-        </h1>
-        <div className="mt-4 flex items-start justify-between w-full">
-          <h2 className="text-xl text-semibold text-slate-600">
-            We offer the
-            <span className="text-2xl font-bold ml-1">services</span> related to
-            IT
-          </h2>
-        </div>
-        <div className="mt-8">
-          <a href="/services">
-            <Button
-              text="Explore Our Services"
-              className="bg-[#d9e2e2] py-4 px-8 rounded-full text-black flex items-center gap-2 text-xl transition-transform transform hover:scale-105"
-              icon={<FaArrowRight />}
-            />
-          </a>
-        </div>
-      </motion.div>
+        {/* Content */}
+        {/* <div className={`${styles.section} w-[90%] sm:w-[60%] z-10`}>
+          <h1
+            className={`text-4xl sm:text-6xl font-semibold text-red-600 mb-5 `}
+          >
+            Aarya Trading <br />
+          </h1>
+          <p className="pt-5 text-sm sm:text-lg text-gray-200"></p>
+          <Link to="/services" className="inline-block mt-5">
+            <div className={`${styles.button} py-3 px-6 rounded-md text-lg`}>
+              <span className="text-white font-Poppins text-18">Know More</span>
+            </div>
+          </Link>
+        </div> */}
+      </div>
+
+      {/* Background Image with Motion (Hidden on Small Screens) */}
+      <Link to="/services">
+        <motion.div
+          className="absolute bottom-0 left-0 hidden sm:block w-full sm:w-[250px] sm:h-[250px] bg-cover rounded bg-center"
+          style={{
+            backgroundImage: `url(${sp})`,
+            rotate: 45,
+            originX: "50%",
+            originY: "50%",
+            top: "25%",
+            left: "70%",
+            scale: [0.9, 1],
+            boxShadow: "0px 0px 20px rgba(0, 0, 0, 0.3)",
+          }}
+          whileHover={{ scale: 1.05 }}
+          transition={{ duration: 0.3 }}
+        ></motion.div>
+      </Link>
     </div>
   );
 };

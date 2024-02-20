@@ -1,4 +1,6 @@
 import React from "react";
+
+
 import "./App.css";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Navbar from "./components/Navbar/navbar";
@@ -6,6 +8,8 @@ import Body from "./components/body/body";
 import HomePage from "./components/HomePage";
 import Services from "./components/serv/Services";
 import ContactUs from "./components/contactus/ContactUs";
+import AboutUs from "./components/about/about";
+
 class App extends React.Component {
   componentDidCatch(error, info) {
     console.error("Error caught by App component:", error, info);
@@ -21,6 +25,7 @@ class App extends React.Component {
             <Route path="/" element={<Body />} />
             <Route path="/services" element={<Services />} />
             <Route path="/contact" element={<ContactUs />} />
+            <Route path="/about" element={<AboutUs />} />
             {/* <Route path="/menu" element={<Menu />} /> */}
             {/* Add more routes as needed */}
           </Routes>
