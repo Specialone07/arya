@@ -181,7 +181,7 @@ const Cont = () => {
             className="inline-block text-black font-semibold py-2 px-4 mb-4"
             style={{
               borderRadius: "10px",
-              backgroundImage: "linear-gradient(to left,  #0891b2,#FCd,)",
+              backgroundImage: "linear-gradient(to right, #0891b2, #FCd)",
               backgroundSize: "200% auto",
               transition: "background-position 0.5s",
             }}
