@@ -1,113 +1,95 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
+import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
+import { Link, NavLink, useLocation } from "react-router-dom"; // Import Link, NavLink, and useLocation from react-router-dom
+import { FaFacebook, FaTwitter, FaInstagram } from "react-icons/fa"; // Import social icons
 import logo from "./aarya.png";
-import { FaTiktok, FaInstagram, FaFacebook } from "react-icons/fa";
-import { Link } from "react-router-dom";
 
 const Navbar = () => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [scrolling, setScrolling] = useState(false);
+  // State to manage the navbar's visibility
+  const [nav, setNav] = useState(false);
 
-  const toggleMenu = () => {
-    setIsOpen(!isOpen);
+  // Toggle function to handle the navbar's display
+  const handleNav = () => {
+    setNav(!nav);
   };
 
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 20) {
-        setScrolling(true);
-      } else {
-        setScrolling(false);
-      }
-    };
+  // Get the current location using useLocation hook
+  const location = useLocation();
 
-    window.addEventListener("scroll", handleScroll);
+  // Function to handle navigation item click on mobile
+  const handleNavItemClick = () => {
+    setNav(false); // Close the mobile navigation menu
+  };
 
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
+  // Array containing navigation items with their respective links
+  const navItems = [
+    { id: 1, text: "Services", link: "/services" },
+    { id: 2, text: "About", link: "/about" },
+    { id: 3, text: "Contact", link: "/contact" },
+  ];
 
   return (
-    <nav
-      className={`py-4 px-6 md:px-10 sticky top-0 z-10 ${
-        scrolling ? "bg-gray-200" : ""
-      }`}
-    >
-      <div className="container mx-auto flex items-center justify-between">
-        <div>
-          <Link to="/">
-            <img src={logo} alt="" className="h-10 w-12" />
-          </Link>
-        </div>
+    <div className="bg-none flex justify-between items-center h-24 max-w-[1240px] mx-auto px-4 text-black font-bold">
+      {/* Logo */}
+      <Link to="/"> {/* Link to main homepage */}
+        <img src={logo} alt="Logo" className="w-12 h-auto" />
+      </Link>
 
-        <div className="md:hidden">
-          <button
-            onClick={toggleMenu}
-            className="text-black dark:text-white focus:outline-none"
+      {/* Desktop Navigation */}
+      <ul className="hidden md:flex items-center justify-center flex-grow">
+        {navItems.map((item) => (
+          <li
+            key={item.id}
+            className={`p-4 hover:bg-[#5e71af] rounded-xl m-2 cursor-pointer duration-300 hover:text-black ${
+              location.pathname === item.link ? "bg-[#b367a7] text-black font-semibold" : ""
+            }`}
           >
-            <svg
-              className="h-6 w-6"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              {isOpen ? (
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M6 18L18 6M6 6l12 12"
-                />
-              ) : (
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M4 6h16M4 12h16m-7 6h7"
-                />
-              )}
-            </svg>
-          </button>
-        </div>
-
-        <div
-          className={`${
-            isOpen ? "block" : "hidden"
-          } md:flex md:space-x-10 dark:text-black font-Roboto font-xl`}
-        >
-          <Link
-            to="/about"
-            className="hover:text-red-600 block md:inline-block"
-          >
-            About Us
-          </Link>
-          <Link
-            to="/services"
-            className="hover:text-red-600 block md:inline-block"
-          >
-            Our Services
-          </Link>
-          <Link
-            to="/contact"
-            className="hover:text-red-600 block md:inline-block"
-          >
-            Contact Us
-          </Link>
-        </div>
-
-        <div className="hidden md:flex space-x-5">
-          <Link to="/tiktok" className="flex items-center">
-            <FaTiktok className="mr-2" />
-          </Link>
-          <Link to="/instagram" className="flex items-center">
-            <FaInstagram className="mr-2" />
-          </Link>
-          <Link to="/facebook" className="flex items-center">
-            <FaFacebook className="mr-2" />
-          </Link>
-        </div>
+            <NavLink to={item.link} className="px-2 py-1 rounded-md">
+              {item.text}
+            </NavLink>{" "}
+            {/* Use NavLink for navigation */}
+          </li>
+        ))}
+      </ul>
+      
+      {/* Social Icons */}
+      <div className="flex justify-end ml-auto">
+        <FaFacebook className="text-xl mx-2" />
+        <FaTwitter className="text-xl mx-2" />
+        <FaInstagram className="text-xl mx-2" />
       </div>
-    </nav>
+
+      {/* Mobile Navigation Icon */}
+      <div onClick={handleNav} className="block md:hidden">
+        {nav ? <AiOutlineClose size={20} /> : <AiOutlineMenu size={20} />}
+      </div>
+
+      {/* Mobile Navigation Menu */}
+      <ul
+        className={
+          nav
+            ? "fixed md:hidden left-0 top-0 w-[60%] h-full border-r border-r-gray-900 bg-white ease-in-out duration-500 z-50"
+            : "ease-in-out w-[60%] duration-500 fixed top-0 bottom-0 left-[-100%]"
+        }
+      >
+        {/* Mobile Logo */}
+        <img src={logo} alt="Logo" className="w-12 h-auto m-4" />
+
+        {/* Mobile Navigation Items */}
+        {navItems.map((item) => (
+          <li
+            key={item.id}
+            className={` p-4 border-b rounded-xl hover:bg-[#00df9a] duration-300 hover:text-black cursor-pointer border-gray-600 ${
+              location.pathname === item.link ? "bg-[#00df9a] text-white" : ""
+            }`}
+            onClick={handleNavItemClick} // Handle click on navigation item
+          >
+            <Link to={item.link}>{item.text}</Link>{" "}
+            {/* Use Link for navigation */}
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 };
 

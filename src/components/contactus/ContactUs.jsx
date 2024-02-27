@@ -1,12 +1,14 @@
 import React from "react";
 import { FaPhone, FaClock } from "react-icons/fa";
 import { FaLocationDot } from "react-icons/fa6";
-
+import Cont from "../Cont/Cont";
 const ContactUs = () => {
   return (
+    <>
+   
     <div className="relative min-h-[70vh] 800px:min-h-[80vh] overflow-x-auto flex flex-col items-center justify-center mt-4 px-4 lg:px-0">
       <h1 className="text-2xl lg:text-[2.5rem] font-bold">
-        Get <span className="text-red-600">In Touch</span>
+        Get <span className="text-blue-500">In Touch</span>
       </h1>
       <h4 className=" mt-1 text-lg lg:text-1.9xl text-[#252327] font-bold">
         So we can find the optimal solution tailored to your needs.
@@ -19,7 +21,7 @@ const ContactUs = () => {
               <span className="absolute -top-1 left-8"> Our Address</span>
             </h1>
             <h4 className="text-xl lg:text-2xl sans">
-              Al Fahidi, Abu Dhabi, UAE
+              Al Fahidi, Bur Dubai, Dubai, UAE
             </h4>
           </div>
           <div className="flex flex-col gap-4">
@@ -50,7 +52,7 @@ const ContactUs = () => {
           </div>
         </div>
         {/* Map container */}
-        <div className="w-full lg:w-auto bg-[#e7e9e9] rounded-3xl text-black px-8 py-8 lg:py-16 gap-8 lg:gap-16 flex flex-col">
+        <div className="w-full lg:w-auto bg-none rounded-3xl text-black px-8 py-8 lg:py-16 gap-8 lg:gap-16 flex flex-col">
           <div className="map-container">
             {/* Embed Google Maps iframe */}
             <iframe
@@ -66,7 +68,12 @@ const ContactUs = () => {
           </div>
         </div>
       </div>
+   
     </div>
+       <div className=" mx-auto px-4 sm:px-6 lg:px-8 mt-8">
+       <Cont />
+     </div>
+     </>
   );
 };
 
